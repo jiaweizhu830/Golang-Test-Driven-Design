@@ -8,10 +8,10 @@ func TestHello(t *testing.T) {
 	assertCorrectMessage := func(t testing.TB, got, want string) {
 		// to tell the test suite that this method is a helper
 		t.Helper()
-		
+
 		if got != want {
 			// print out a message and fail the test
-			// f stands for format => so that we can use %q (placeholder)
+			// f stands for format => so that we can use %q (placeholder for string)
 			t.Errorf("got %q want %q", got, want)
 		}
 	}
@@ -22,7 +22,7 @@ func TestHello(t *testing.T) {
 		got := Hello("Chris", "")
 		want := "Hello, Chris"
 
-		assertCorrectMessage(t, got, want);
+		assertCorrectMessage(t, got, want)
 	})
 
 	t.Run("say 'Hello, World' when an empty string is supplied", func(t *testing.T) {
@@ -30,7 +30,7 @@ func TestHello(t *testing.T) {
 		got := Hello("", "")
 		want := "Hello, World"
 
-		assertCorrectMessage(t, got, want);
+		assertCorrectMessage(t, got, want)
 	})
 
 	t.Run("in Spanish", func(t *testing.T) {
@@ -44,14 +44,14 @@ func TestHello(t *testing.T) {
 		want := "Bonjour, Elodie"
 		assertCorrectMessage(t, got, want)
 	})
- }
+}
 
- // Go is statically typed
+// Go is statically typed
 
- // TDD
- // 1. create test for new requirements
- // 2. fail test
- // 3. add code 
- // 4. pass test
- // 5. refactor
- // 6. pass test
+// TDD
+// 1. create test for new requirements
+// 2. fail test
+// 3. add code
+// 4. pass test
+// 5. refactor
+// 6. pass test

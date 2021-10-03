@@ -1,6 +1,8 @@
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
 // func TestSearch(t *testing.T) {
 // 	// map declaration: map[key type]value type

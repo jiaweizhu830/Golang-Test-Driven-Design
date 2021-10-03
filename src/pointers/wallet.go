@@ -56,4 +56,8 @@ func (w *Wallet) Withdraw(amount Bitcoin) error {
 /**
 In Go, when you call a function or a method, the arguments (e.g. receiver variable) are COPIED
 In Go, permits to not explicit dereference a pointer (struct pointers: automatically dereferenced)
+
+& use pointer
+* dereference pointer
+
 */

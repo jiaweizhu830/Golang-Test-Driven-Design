@@ -1,32 +1,41 @@
 package context
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 )
 
 func Server(store Store) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		ctx := r.Context()
+		// Server code responsible for cancellation
+		// ctx := r.Context()
 
-		data := make(chan string, 1)
+		// data := make(chan string, 1)
 
-		go func() {
-			data <- store.Fetch()
-		}()
+		// go func() {
+		// 	data <- store.Fetch()
+		// }()
 
-		select {
-		case d := <-data:
-			// write data fetched from store to response
-			fmt.Fprint(w, d)
-		// Done() method returns a channel
-		case <-ctx.Done():
-			store.Cancel()
+		// select {
+		// case d := <-data:
+		// 	// write data fetched from store to response
+		// 	fmt.Fprint(w, d)
+		// // Done() method returns a channel
+		// case <-ctx.Done():
+		// 	store.Cancel()
+		// }
+
+		// Server code NOT responsible for cancellation
+		data, err := store.Fetch(r.Context())
+		if err != nil {
+			return
 		}
+		fmt.Fprint(w, data)
 	}
 }
 
 type Store interface {
-	Fetch() string
-	Cancel()
+	Fetch(ctx context.Context) (string, error)
+	// Cancel()
 }
